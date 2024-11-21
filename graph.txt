@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class directedGraph{
+  unordered_map<int,list<int>> adj;
+  
+  public:
+  
+  unordered_map<int,list<int>> getadj(){
+    return adj;
+  }
+  void addEdge(int v,int w){
+    adj[v].push_back(w);
+  }
+  
+  void printGraph(){
+    for(auto &node : adj){
+      cout << node.first << "->";
+      for(auto neighbour: node.second){
+      cout << neighbour << " ";
+    }
+     cout << endl;
+    }
+  }
+  
+   void updateEdge(int u,int oldV,int newV){
+         auto it = find(adj[u].begin(),adj[u].end(),oldV);
+         
+         if(it!= adj[u].end()){
+           *it = newV;
+         }
+  }
+  
+   void removeEdge(int u,int v){
+    adj[u].remove(v);
+  }
+  
+  vector<int> BFSofGraph(int startVertex){
+    int n = adj.size();
+    vector<bool> visited(n,0);
+    
+vector<int> ans;
+
+queue<int> q;
+q.push(startVertex);
+while(!q.empty()){
+  int v = q.front();
+  //cout << adj[0].front() << endl;
+  ans.push_back(v);
+  
+  visited[v] = 1;
+  q.pop();
+  
+  for(auto x : adj[v]){
+   if(!visited[x]){
+     visited[x] = 1;
+     q.push(x);
+   }
+  }
+}
+return ans;
+  }
+  
+};
+
+int main() 
+{
+   
+   directedGraph g;
+   g.addEdge(1,2);
+   g.addEdge(1,3);
+   g.addEdge(2,3);
+   g.addEdge(3,1);
+   g.addEdge(3,2);
+   g.addEdge(3,4);
+   
+   g.printGraph();
+   g.updateEdge(1,3,4);
+   cout << endl;
+   g.printGraph();
+   
+   g.removeEdge(3,4);
+    cout << endl;
+   g.printGraph();
+   
+   vector<int> ans = g.BFSofGraph(3);
+   cout << "BFS:";
+   for(auto x:ans){
+     cout << x << " ";
+   }
+    return 0;
+}
