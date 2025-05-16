@@ -1,4 +1,36 @@
-/* package codechef; // don't place package name! */
+/* Given a 2D matrix matrix, handle multiple queries of the following type: Calculate the sum of the elements of matrix inside the rectangle defined by its upper left corner (x1, y1) and lower right corner (x2, y2) for every query.
+
+Input Format
+
+First line contains n and m (dimensions of matrix). Next n lines contains m elements for the matrix. Third line contains q denoting number of queries. Next q lines contains x1,y1,x2,y2 where (x1,y1) is the upper left corner of defined matrix and (x2,y2) lower right corner.
+
+Output Format
+
+Print q lines each denoting sum of the defined rectangle.
+
+Example 1;
+
+Input
+
+3 3
+1 2 3
+4 5 6
+7 8 9
+2
+0 0 1 1
+1 0 2 2
+
+Output
+12
+39
+
+Explanation For first query elements we got are 1+2+4+5 = 12 For second query elements are 4+5+6+7+8+9=39
+Constraints
+1 <= m*n <= 10^6
+-1000 <= matrix[i][j] <= 1000
+0 <= x1 <= x2 < n
+0 <= y1 <= y2 < m
+Number of queries will not exceed 10^5. */
 import java.util.*;
 import java.lang.*;
 import java.io.*;
